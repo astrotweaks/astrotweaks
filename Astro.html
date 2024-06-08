@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://media.discordapp.net/attachments/1182472890684276766/1248668623166247034/o_1hn0vv4if1lppak618ku9e61s1jc.png?ex=666480c6&is=66632f46&hm=d6254ee59569643de7696fe43b58ba58b7c273c6009b626486bb2d9b1eb781ca&=&format=webp&quality=lossless">
+    <title>Astro Tweaking Utility</title>
+    <meta property="og:title" content="Astro">
+    <meta property="og:description" content="A Windows Tweaking Tool.">
+    <meta property="og:url" content="https://astrotweaks.xyz">
+    <meta property="og:type" content="website">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Roboto", sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Ajusta la opacidad según necesites */
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .social-links button {
+            border: none;
+            border-radius: 5px;
+            padding: 10px 0;
+            font-size: 1rem;
+            color: #fff;
+            cursor: pointer;
+            width: 150px;
+            margin: 0 auto;
+            font-family: "Roboto", sans-serif;
+            font-weight: bold;
+            font-size: 15px;
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .facebook-button {
+            background-color: #3b5998;
+        }
+
+        .twitter-button {
+            background-color: #11ca58;
+        }
+
+        .github-button {
+            background-color: #333;
+        }
+
+        .social-links button:hover {
+            opacity: 0.8;
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .perspective-image {
+            position: absolute;
+            top: 50%;
+            right: 50px; /* Ajusta la posición a la derecha */
+            transform: translateY(-50%) perspective(800px) rotateY(-20deg);
+            animation: fadeIn 2s ease-in-out;
+            z-index: 0;
+            width: 600px; /* Ajusta el tamaño de la imagen según sea necesario */
+        }
+        
+        /* Estilos para el contador FPS Boost */
+        #fpsBoost {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 48px; /* Tamaño grande */
+            color: #00FF00; /* Verde */
+            position: fixed;
+            left: 50px;
+            top: 400px; /* Asegura que el contador esté sobre todo lo demás */
+            text-align: center; /* Centra el texto */
+            text-shadow: 0 0 20px #00FF00; /* Resplandor verde */
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop class="background-video">
+        <source src="tu-video.mp4" type="video/mp4">
+        Tu navegador no soporta la etiqueta de video.
+    </video>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>Astro</h1>
+        <h2>A Windows Tweaking Tool.</h2>
+        <div class="social-links">
+            <a href="https://discord.gg/6ZfbRQ3dDn" target="_blank"><button class="github-button">Download</button></a>
+            <a href="https://discord.gg/6ZfbRQ3dDn" target="_blank"><button class="twitter-button">Discord</button></a>
+        </div>
+    </div>
+    <!-- Usando una URL pública de una imagen para verificar -->
+    <img src="https://media.discordapp.net/attachments/1182480673769017394/1241404326753210429/image.png?ex=66631fdf&is=6661ce5f&hm=b60244f1da0415fcadc27a52cfbbfaa063d2fff4f0231060ee80f412e36bd613&=&format=webp&quality=lossless" alt="Imagen con perspectiva" class="perspective-image">
+    
+    <!-- Contador FPS Boost -->
+    <div id="fpsBoost">
+        <span id="boostText">FPS BOOST +</span>
+        <span id="boostCounter">0</span><span id="plusSign"></span>
+    </div>
+
+    <script>
+        // Función para actualizar el contador hasta 999
+        function updateCounter() {
+            var counter = document.getElementById("boostCounter");
+            var count = parseInt(counter.innerText);
+            if (count < 999) {
+                count++;
+                counter.innerText = count;
+                setTimeout(updateCounter, 1); // Actualiza cada 1 milisegundo
+            } else {
+                counter.innerText = "999";
+            }
+        }
+        updateCounter();
+    </script>
+</body>
+</html>
